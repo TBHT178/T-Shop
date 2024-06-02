@@ -10,7 +10,6 @@ import { ProductCategory } from '../common/product-category';
 })
 export class ProductService {
 
-
   private baseUrl = 'http://localhost:8080/api/products';
   private categoryUrl = 'http://localhost:8080/api/product-category';
 
@@ -40,7 +39,10 @@ export class ProductService {
     );
   }
 
-
+  getProduct(theProductId: number): Observable<Product> {
+    const productUrl = `${this.baseUrl}/${theProductId}`;
+    return this.httpClient.get<Product>(productUrl);
+  }
 }
 
 
