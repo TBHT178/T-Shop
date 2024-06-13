@@ -10,11 +10,12 @@ import { Country } from '../../common/country';
 import { State } from '../../common/state';
 import { ShopValidators } from '../../validators/shop-validators';
 import { CartService } from '../../services/cart.service';
-import { CheckoutService } from '../../serivces/checkout.service';
+
 import { Router } from '@angular/router';
 import { Order } from '../../common/order';
 import { OrderItem } from '../../common/order-item';
 import { Purchase } from '../../common/purchase';
+import { CheckoutService } from '../../services/checkout.service';
 
 @Component({
   selector: 'app-checkout',
