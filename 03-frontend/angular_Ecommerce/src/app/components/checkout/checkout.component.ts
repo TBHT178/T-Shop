@@ -42,6 +42,7 @@ export class CheckoutComponent implements OnInit {
   cardElement: any;
   displayError: any = '';
 
+  isDisable: boolean = false;
 
   countries: Country[] = [];
 
@@ -321,6 +322,8 @@ export class CheckoutComponent implements OnInit {
     
     if(!this.checkoutFormGroup.invalid && this.displayError.textContent === ""){
       
+      this.isDisable = true;
+
       this.checkoutService.createPaymentIntent(this.paymentInfo).subscribe(
         (paymentIntentResponse) => {
           this.stripe.confirmCardPayment(paymentIntentResponse.client_secret,
@@ -344,6 +347,7 @@ export class CheckoutComponent implements OnInit {
             if (result.error){
               // inform the customer there was an error
               alert(`There was an error: ${result.error.message}`);
+              this.isDisable = false;
             } else {
               // call REST API via the CheckoutService
               this.checkoutService.placeOrder(purchase).subscribe({
@@ -352,9 +356,11 @@ export class CheckoutComponent implements OnInit {
                 
                 // reset cart
                 this.resetCart();
+                this.isDisable = false;
                 },
                 error: (err: any) => {
                   alert(`There was an error: ${err.message}`);
+                  this.isDisable = false;
                 }
               })
             }
