@@ -58,6 +58,14 @@
               ],
               "outputHashing": "all"
             },
+            "qa": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.qa.ts"
+                }
+              ]
+            },
             "development": {
               "optimization": false,
               "extractLicenses": false,
@@ -71,6 +79,9 @@
           "configurations": {
             "production": {
               "buildTarget": "angular_Ecommerce:build:production"
+            },
+            "qa": {
+              "buildTarget": "angular_Ecommerce:build:qa"
             },
             "development": {
               "buildTarget": "angular_Ecommerce:build:development"
