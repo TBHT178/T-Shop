@@ -9,9 +9,13 @@ import com.tbht.ecommerce.service.CheckoutService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.logging.Logger;
+
 @RestController
 @RequestMapping("/api/checkout")
 public class CheckoutController {
+
+    private Logger logger = Logger.getLogger(this.getClass().getName());
 
     private CheckoutService checkoutService;
 
@@ -25,6 +29,8 @@ public class CheckoutController {
 
     @PostMapping("/payment-intent")
     public ResponseEntity<String> createPaymentIntent(@RequestBody PaymentInfo paymentInfo) throws Exception {
+
+        logger.info("paymentInfo.amount: " + paymentInfo.getAmount());
         PaymentIntent paymentIntent = checkoutService.createPaymentIntent(paymentInfo);
 
         String paymentStr = paymentIntent.toJson();
